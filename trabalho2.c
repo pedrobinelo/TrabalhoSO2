@@ -1,4 +1,6 @@
 //Pedro Renato Binelo Briltes e Kellven Dias
+//https://github.com/pedrobinelo/TrabalhoSO2
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -46,11 +48,11 @@ int main(){
         printf("\n\nEscolha algum algoritmo de escalonamento: \n\n");
         printf("\t1 - FCFS\n");
         printf("\t2 - SJF preemptivo\n");
-        printf("\t3 - SJF não preemptivo\n");
+        printf("\t3 - SJF nÃ£o preemptivo\n");
         printf("\t4 - Priority Scheduling\n");
         printf("\t5 - Round Robin\n\n");
         printf("\tDigite qualquer outro valor para encerrar o programa.\n\n");
-        printf("Digite a opção desejada: ");
+        printf("Digite a opÃ§Ã£o desejada: ");
         scanf("%d", &op);
         system("clear");
 
@@ -59,24 +61,24 @@ int main(){
             lerFCFS(&proc, &burst_time, &n);
             FCFS(proc, n, burst_time);
 
-            //liberar memória alocada
+            //liberar memÃ³ria alocada
             free(proc);
             free(burst_time);
         }
         else if(op == 2){ //SJF preemptivo
                 do{
-                    printf("Digite o número de processos: ");
+                    printf("Digite o nÃºmero de processos: ");
                     scanf("%d", &tamanho);
                     system("clear");
                     if(tamanho<2){
-                        printf("\tValor inválido.\n\n");
+                        printf("\tValor invÃ¡lido.\n\n");
                     }
                 }while(tamanho<2);
 
                 Process *proc = (Process *)malloc(tamanho * sizeof(Process));
 
                 if(proc == NULL){
-                    printf("Erro de alocação de memória.\n");
+                    printf("Erro de alocaÃ§Ã£o de memÃ³ria.\n");
                     exit(1);
                 }
 
@@ -85,20 +87,20 @@ int main(){
                 free(proc);
         }
         else if(op == 3){
-                    //SJF não preemptivo
+                    //SJF nÃ£o preemptivo
                     do{
-                        printf("Digite o número de processos: ");
+                        printf("Digite o nÃºmero de processos: ");
                         scanf("%d", &tamanho);
                         system("clear");
                         if(tamanho<2){
-                            printf("\tValor inválido.\n\n");
+                            printf("\tValor invÃ¡lido.\n\n");
                         }
                     }while(tamanho<2);
 
                     Process *proc = (Process *)malloc(tamanho * sizeof(Process));
 
                     if(proc == NULL){
-                        printf("Erro de alocação de memória.\n");
+                        printf("Erro de alocaÃ§Ã£o de memÃ³ria.\n");
                         exit(1);
                     }
 
@@ -109,16 +111,16 @@ int main(){
         else if(op == 4){
 
             do{
-                printf("Digite o número de processos: ");
+                printf("Digite o nÃºmero de processos: ");
                 scanf("%d", &tamanho);
                 system("clear");
-                if(tamanho<2){printf("\tValor inválido. \n\n");}
+                if(tamanho<2){printf("\tValor invÃ¡lido. \n\n");}
             }while(tamanho<2);
 
             Process *proc = (Process *)malloc(tamanho * sizeof(Process));
 
             if(proc==NULL){
-                printf("Erro de alocação de memória. \n");
+                printf("Erro de alocaÃ§Ã£o de memÃ³ria. \n");
                 exit(1);
             }
 
@@ -131,10 +133,10 @@ int main(){
         else if(op == 5){ //Round Robin
 
             do{
-                printf("Digite o número de processos: ");
+                printf("Digite o nÃºmero de processos: ");
                 scanf("%d", &tamanho);
                 system("clear");
-                if(tamanho<2){printf("\tValor inválido. \n\n");}
+                if(tamanho<2){printf("\tValor invÃ¡lido. \n\n");}
             }while(tamanho<2);
 
             printf("Digite o valor do quantum: ");
@@ -143,7 +145,7 @@ int main(){
             Process *proc = (Process *)malloc(tamanho * sizeof(Process));
 
             if(proc==NULL){
-                printf("Erro de alocação de memória. \n");
+                printf("Erro de alocaÃ§Ã£o de memÃ³ria. \n");
                 exit(1);
             }
 
@@ -162,20 +164,20 @@ int main(){
 
 void lerFCFS(int **proc, int **burst_time, int *n){
     do{
-        printf("Digite o número de processos: ");
+        printf("Digite o nÃºmero de processos: ");
         scanf("%d", n);
         system("clear");
         if(*n<2){
-            printf("\tValor inválido.\n\n");
+            printf("\tValor invÃ¡lido.\n\n");
         }
     }while(*n<2);
 
-//alocação de memória para numero de processos e burst time
+//alocaÃ§Ã£o de memÃ³ria para numero de processos e burst time
     *proc = (int*) malloc(*n * sizeof(int));
     *burst_time = (int*) malloc(*n * sizeof(int));
 
     if(*proc == NULL || *burst_time == NULL){
-        printf("Erro de alocação de memória.");
+        printf("Erro de alocaÃ§Ã£o de memÃ³ria.");
         exit(1);
     }
     if(*proc!=NULL && *burst_time!=NULL){
@@ -192,7 +194,7 @@ void FCFS(int proc[],int n,int burst_time[]){
     int i, wait_time[n], sum_wt=0;
 
     //Find the waiting time for processes
-    wait_time[0]=0; //Because waiting time for 1° process is zero
+    wait_time[0]=0; //Because waiting time for 1Â° process is zero
     //Calculating waiting time
     i=1;
     while(i<n){
@@ -207,7 +209,7 @@ void FCFS(int proc[],int n,int burst_time[]){
     }
 
     float avgwt = (float)sum_wt/n;
-    printf("Tempo médio de espera: %.2f\n", avgwt);
+    printf("Tempo mÃ©dio de espera: %.2f\n", avgwt);
 }
 void lerSJFP(Process proc[], int tamanho){
     for(int i = 0; i<tamanho; i++){
@@ -244,7 +246,7 @@ void SJFpreemptive(Process proc[], int tamanho){
     while(completed < tamanho){
         int shortest = findShortestRemainingTime(proc, tamanho, current_time);
 
-        //verificação se há processos prontos no momento
+        //verificaÃ§Ã£o se hÃ¡ processos prontos no momento
         if(shortest == -1){
             current_time++;
             continue;
@@ -261,11 +263,11 @@ void SJFpreemptive(Process proc[], int tamanho){
             proc[shortest].wt = proc[shortest].tat - proc[shortest].bt;
         }
     }
-    // Calcular tempo médio de espera e tempo mÃ©dio de turnaround
+    // Calcular tempo mÃ©dio de espera e tempo mÃƒÂ©dio de turnaround
     float total_waiting_time = 0;
     float total_turnaround_time = 0;
 
-    printf("PID\tChegada\tBurst\tTérmino\tTurnaround\tEspera\n");
+    printf("PID\tChegada\tBurst\tTÃ©rmino\tTurnaround\tEspera\n");
 
     for (int i = 0; i < tamanho; i++) {
         total_waiting_time += proc[i].wt;
@@ -273,8 +275,8 @@ void SJFpreemptive(Process proc[], int tamanho){
         printf("%d\t%d\t%d\t%d\t%d\t\t%d\n", proc[i].pid, proc[i].arrival_time, proc[i].bt, proc[i].finish_time, proc[i].tat, proc[i].wt);
     }
 
-    printf("\n\nTempo médio de espera: %.2f\n", total_waiting_time / tamanho);
-    printf("Tempo médio de turnaround: %.2f\n", total_turnaround_time / tamanho);
+    printf("\n\nTempo mÃ©dio de espera: %.2f\n", total_waiting_time / tamanho);
+    printf("Tempo mÃ©dio de turnaround: %.2f\n", total_turnaround_time / tamanho);
 }
 int findShortestJob(Process proc[], int tamanho, int current_time){
     int min_index = -1;
@@ -309,11 +311,11 @@ void SJFNonPreemptive(Process proc[], int tamanho) {
         completed++;
     }
 
-    // Calcular tempo médio de espera e tempo médio de turnaround
+    // Calcular tempo mÃ©dio de espera e tempo mÃ©dio de turnaround
     float total_waiting_time = 0;
     float total_turnaround_time = 0;
 
-    printf("PID\tChegada\tBurst\tTérmino\tTurnaround\tEspera\n");
+    printf("PID\tChegada\tBurst\tTÃ©rmino\tTurnaround\tEspera\n");
 
     for (int i = 0; i < tamanho; i++) {
         total_waiting_time += proc[i].wt;
@@ -321,8 +323,8 @@ void SJFNonPreemptive(Process proc[], int tamanho) {
         printf("%d\t%d\t%d\t%d\t%d\t\t%d\n", proc[i].pid, proc[i].arrival_time, proc[i].bt, proc[i].finish_time, proc[i].tat, proc[i].wt);
     }
 
-    printf("\n\nTempo médio de espera: %.2f\n", total_waiting_time / tamanho);
-    printf("Tempo médio de turnaround: %.2f\n", total_turnaround_time / tamanho);
+    printf("\n\nTempo mÃ©dio de espera: %.2f\n", total_waiting_time / tamanho);
+    printf("Tempo mÃ©dio de turnaround: %.2f\n", total_turnaround_time / tamanho);
 }
 void lerSJFNP(Process proc[], int tamanho){
     for(int i = 0; i<tamanho; i++){
@@ -367,7 +369,7 @@ void PriorityScheduling(Process proc[], int tamanho){
         int max_priority_index = -1;
         int max_priority = INT_MAX;
 
-        //processo de maior prioridade é definido como o processo de menor valor numérico, isto é, se proc1.priority = 1 e proc2.priority = 2, proc1 tem maior prioridade que proc2
+        //processo de maior prioridade Ã© definido como o processo de menor valor numÃ©rico, isto Ã©, se proc1.priority = 1 e proc2.priority = 2, proc1 tem maior prioridade que proc2
         //Encontrar processo com maior prioridade
         for(int i=0; i<tamanho; i++){
             if (proc[i].arrival_time <= current_time && proc[i].remaining_time > 0 && proc[i].priority < max_priority){
@@ -381,12 +383,12 @@ void PriorityScheduling(Process proc[], int tamanho){
             continue;
         }
 
-        //execução do processo com maior prioridade
+        //execuÃ§Ã£o do processo com maior prioridade
         int shortest = max_priority_index;
         proc[shortest].remaining_time--;
         current_time++;
 
-        //conclusão do processo
+        //conclusÃ£o do processo
         if(proc[shortest].remaining_time == 0){
             completed++;
             proc[shortest].finish_time = current_time;
@@ -395,11 +397,11 @@ void PriorityScheduling(Process proc[], int tamanho){
         }
         
     }
-       // Calcular tempo médio de espera e tempo médio de turnaround
+       // Calcular tempo mÃ©dio de espera e tempo mÃ©dio de turnaround
     float total_waiting_time = 0;
     float total_turnaround_time = 0;
 
-    printf("PID\tChegada\tBurst\tPrioridade\tTérmino\tTurnaround\tEspera\n");
+    printf("PID\tChegada\tBurst\tPrioridade\tTÃ©rmino\tTurnaround\tEspera\n");
 
     for (int i = 0; i < tamanho; i++) {
         total_waiting_time += proc[i].wt;
@@ -407,8 +409,8 @@ void PriorityScheduling(Process proc[], int tamanho){
         printf("%-4d\t%-7d\t%-6d\t%-15d\t%-11d\t%-11d\t%-2d\n", proc[i].pid, proc[i].arrival_time, proc[i].bt, proc[i].priority, proc[i].finish_time, proc[i].tat, proc[i].wt);
     }
 
-    printf("\n\nTempo médio de espera: %.2f\n", total_waiting_time / tamanho);
-    printf("Tempo médio de turnaround: %.2f\n", total_turnaround_time / tamanho);
+    printf("\n\nTempo mÃ©dio de espera: %.2f\n", total_waiting_time / tamanho);
+    printf("Tempo mÃ©dio de turnaround: %.2f\n", total_turnaround_time / tamanho);
 }
 void lerRoundRobin(Process proc[], int tamanho){
 
